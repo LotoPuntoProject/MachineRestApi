@@ -23,7 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'gm8&b9@^#c^=alz+l&#2xyy@l@#i$nrm9bw0ib=8%o2t@itvpn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = int(os.environ.get('DEBUG', default=1))
 
 ALLOWED_HOSTS = []
 
@@ -31,13 +32,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'machine.apps.MachineConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'machine'
 ]
 
 MIDDLEWARE = [
@@ -76,8 +78,12 @@ WSGI_APPLICATION = 'LotoPuntoApp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'lotopuntoRaspi',
+        'USER': 'admin',
+        'PASSWORD': 'secret',
+        'HOST': 'localhost',
+        'DATABASE_PORT': '5432',
     }
 }
 
@@ -123,3 +129,7 @@ STATIC_URL = '/static/'
 
 # admin
 # Secret1!
+
+# machine
+# ,%D)t,$7D@[86`(y$@!V7Rnv
+# , % DRIP ) tokyo , $ 7 DRIP @ [ 8 6 ` ( yelp $ @ ! VISA 7 ROPE nut visa
