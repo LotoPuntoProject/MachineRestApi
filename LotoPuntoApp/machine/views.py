@@ -12,14 +12,16 @@ from .models import LotoMachine
 
 from .serializer import LotoMachineSerializer
 
+import json
+
 def index(request):
     return HttpResponse("Loto Punto App")
 
 def login_request(user, password, terminalId):
-    url = 'http://localhost:3000/api/v1/users/login'
+    url = 'http://demo4885696.mockable.io/loto-punto/login'
     user = 'noreplycincop@gmail.com'
     password = 'XQW8UbVDwZ'
-    payload = {"email": user, "password": password, "terminalId": terminalId}
+    payload = {"user": user, "password": password, "terminalId": terminalId}
     return requests.post(url, json=payload)
 
 
@@ -37,10 +39,14 @@ def autologin(request, ):
         data = serializer.data
         ans  = login_request(data['user'], data['password'], data['terminalId'])
         status = ans.status_code
-        print(f"Respuesta del request: {ans.text} status: {status}")
+        data_ans = json.loads(ans.text)
+        
+        print(f"Respuesta del request: {ans.text} {type(ans.text)} status: {status}")
+        print(f"Respuesta del request: {data_ans} {type(data_ans)} status: {status}")
         # data = data.__dict__
         print(f"data: {data['user']} type: {type(data)}")
-        return JsonResponse(serializer.data, safe=False)
+        return JsonResponse(data_ans)
+        # return ans.text
         # snippets = Snippet.objects.all()
         # serializer = SnippetSerializer(snippets, many=True)
         # return Response("hello")

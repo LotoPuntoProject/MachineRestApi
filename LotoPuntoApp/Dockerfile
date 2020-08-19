@@ -45,5 +45,5 @@ EXPOSE 8888
 CMD gunicorn LotoPuntoApp.wsgi:application --bind 0.0.0.0:$PORT 
 
 
-## docker build -t loto-app -f Dockerfile .
+## lsdocker build -t loto-app -f Dockerfile .
 ## docker run -it -p 80:8888 loto-app

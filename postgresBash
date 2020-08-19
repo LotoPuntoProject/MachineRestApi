@@ -1,0 +1,3 @@
+docker exec -it ab7f33710a9e bash
+psql -d postgres -U admin
+CREATE DATABASE lotopuntoRaspi;

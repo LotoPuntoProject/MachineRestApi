@@ -26,8 +26,18 @@ SECRET_KEY = 'gm8&b9@^#c^=alz+l&#2xyy@l@#i$nrm9bw0ib=8%o2t@itvpn'
 # DEBUG = True
 DEBUG = int(os.environ.get('DEBUG', default=1))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '192.168.0.22',
+    'proxy19.rt3.io',
+    'proxy17.rt3.io',
+]
 
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+]
 
 # Application definition
 
@@ -38,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'machine'
 ]
@@ -50,6 +61,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
+
 ]
 
 ROOT_URLCONF = 'LotoPuntoApp.urls'
@@ -82,7 +95,7 @@ DATABASES = {
         'NAME': 'lotopuntoRaspi',
         'USER': 'admin',
         'PASSWORD': 'secret',
-        'HOST': 'localhost',
+        'HOST': '192.168.0.22',
         'DATABASE_PORT': '5432',
     }
 }
